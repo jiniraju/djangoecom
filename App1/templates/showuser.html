@@ -1,0 +1,55 @@
+{% extends 'usermain.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <center>
+        <h3 class="alert alert-dark text-center mb-5">
+           USER DETAILS
+        </h3>
+        <div class="row">
+            <div class="col-sm-10">
+                <table class="table table-dark table-hover text-center ">
+                    <thead>
+                        <tr>
+                            <!-- <th>IMAGE</th> -->
+                            <th>FIRST NAME</th>
+                            <th>LAST NAME</th>
+                            <th>E-MAIL</th>
+                            <th>GENDER</th>
+                            <th>IMAGE</th>
+                            <th>ACTION</th>
+                                                
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            {% for p in user_detail %}
+                        <tr>
+                            <td>
+                                {% if p.image %}
+                                    <img src="{{ p.image.url }}" width="200px" height="110px"><br>                                                                  
+                                        
+                                   
+                                {% endif %}
+                            </td>
+                            <td>{{ p.user.first_name}}</td>
+                            <td>{{ p.user.last_name}}</td>
+                            <td>{{ p.user.email}}</td>  
+                            <td>{{ p.gender }}</td>
+                            <td>
+                                
+                                <a href="{% url 'del_user' p.id %}"><button>DELETE</button></a>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        {% endfor %}
+                    </tbody> 
+                   
+            </div>
+            
+        </div>
+        
+    </center>
+    </div>
+    
+    {% endblock %}
